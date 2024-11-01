@@ -18,6 +18,30 @@ func Hello(name string) (string, error) {
 	return message, nil
 }
 
+func Hellos(names []string) (map[string]string, error) {
+	// initialize a map with the following syntax: make(map[key-type]value-type)
+	messages := make(map[string]string)
+	for _, name := range names {
+		message, err := Hello(name)
+		if err != nil {
+			return nil, err
+		}
+		messages[name] = message
+	}
+	// = vs :=
+
+	// = (Assignment Operator):
+	// Used to assign a new value to an already declared variable.
+	// Works with variables that have been previously defined with var or :=
+
+	// := (Short Variable Declaration):
+	// Used to declare and initialize a new variable in a concise way.
+	// Can only be used within functions (not at the package level).
+	// It both declares and assigns the variable in one step.
+
+	return messages, nil
+}
+
 // Note that randomFormat starts with a lowercase letter, making it accessible only to code in its own package (in other words, it's not exported).
 func randomFormat() string {
 	// declare a formats slice with three message formats. When declaring a slice, you omit its size in the brackets,
